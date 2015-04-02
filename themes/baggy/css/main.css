@@ -727,6 +727,15 @@ a.add-to-wallabag-link-after:after {
 .icon-power:before {
   content: "\e601";
 }
+.icon-pencil:before {
+  content: "\e604";
+}
+.icon-file:before {
+  content: "\e605";
+}
+.icon-power:before {
+  content: "\e601";
+}
 .icon-arrow-up-thick:before {
   content: "\e602";
 }
@@ -1080,4 +1089,25 @@ pre code {
   #search-form form {
     width: 100%;
   }
+}
+
+#editContent input[type="text"]
+{
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+#editContent textarea
+{
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #999;
+  padding: 0.5em 1em;
+  min-width: 12em;
+  color: #666;
+  width: 80%;
+  height: 400px;
 }
