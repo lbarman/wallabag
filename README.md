@@ -1,3 +1,7 @@
+## why this fork ?
+
+It adds the ability to edit the saved web pages.
+
 # what is wallabag ?
 
 ## About development
