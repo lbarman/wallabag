@@ -365,6 +365,26 @@ class Poche
                 Tools::logm('The tag has been applied successfully');
                 Tools::redirect();
                 break;
+            case 'edit_content' :
+                
+                $entry_id = $_POST['entry_id'];
+                $entry = $this->store->retrieveOneById($entry_id, $this->user->getId());
+                if (!$entry) {
+                    $this->messages->add('e', _('Article not found!'));
+                    Tools::logm('error : article not found');
+                    Tools::redirect();
+                }
+
+                //get all already set tags to preven duplicates
+                $title = $_POST['title'];
+                $body = $_POST['body'];
+                $result = $this->store->updateContentAndTitle($entry_id, $title, $body, $this->user->getId());
+                var_dump($result);
+
+                $this->messages->add('s', _('The new content has been set successfully'));
+                Tools::logm('The new content has been set successfully');
+                Tools::redirect();
+                break;
             case 'remove_tag' :
                 $tag_id = $_GET['tag_id'];
                 $entry = $this->store->retrieveOneById($id, $this->user->getId());
@@ -445,6 +465,21 @@ class Poche
                 Tools::logm('config view');
                 break;
             case 'edit-tags':
+                # tags
+                $entry = $this->store->retrieveOneById($id, $this->user->getId());
+                if (!$entry) {
+                    $this->messages->add('e', _('Article not found!'));
+                    Tools::logm('error : article not found');
+                    Tools::redirect();
+                }
+                $tags = $this->store->retrieveTagsByEntry($id);
+                $tpl_vars = array(
+                    'entry_id' => $id,
+                    'tags' => $tags,
+                    'entry' => $entry,
+                );
+                break;
+            case 'edit-content':
                 # tags
                 $entry = $this->store->retrieveOneById($id, $this->user->getId());
                 if (!$entry) {

@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+{% block title %}edit content{% endblock %}
+{% block menu %}
+{% include '_menu.twig' %}
+{% endblock %}
+{% block content %}
+
+<script src="{{ poche_url }}themes/_global/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="{{ poche_url }}themes/_global/js/autoCompleteTags.js"></script>
+<link rel="stylesheet" href="{{ poche_url }}themes/_global/css/jquery-ui-1.10.4.custom.min.css" media="all">
+
+<div id="article">
+  <header class="mbm">
+      <h1>{{ entry.title|raw }}</h1>
+  </header>
+</div>
+<form method="post" action="./?action=edit_content" id="editContent">
+    <input type="hidden" name="entry_id" value="{{ entry_id }}" />
+    <label for="title">{% trans "Edit Title:" %}</label><input type="text" value="{{ entry.title|raw }}" id="title" name="title" required="required" />
+    <br/>
+    <label for="body">{% trans "Edit Content:" %}</label>
+    <textarea id="body" name="body" required="required"  class="html">
+    	{{ entry.content|raw }}
+    </textarea>
+    <input type="submit" value="Save" />
+
+</form>
+<br>
+<a href="./?view=view&id={{ entry_id }}">&laquo; {% trans "return to article" %}</a>
+
+{% endblock %}
